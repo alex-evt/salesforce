@@ -3,12 +3,12 @@ package model;
 public class User {
 
     private String url = "https://tms9.lightning.force.com/";
-    private String login = "xmx8k-23uy@force.com";
+    private String username = "xmx8k-23uy@force.com";
     private String password = "TMSAQA17onl";
 
-    public User(String url, String login, String password) {
+    public User(String url, String username, String password) {
         this.url = url;
-        this.login = login;
+        this.username = username;
         this.password = password;
     }
 
@@ -19,8 +19,8 @@ public class User {
         return url;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {

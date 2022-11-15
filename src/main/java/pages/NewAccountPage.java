@@ -3,34 +3,44 @@ package pages;
 import elements.DropDown;
 import elements.InputField;
 import model.Account;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NewAccountPage extends BasePage{
+import java.time.Duration;
 
-    private static final String SAVE_BUTTON_XPATH = "//button[@title='Save']";
+public class NewAccountPage extends BasePage {
+
+    private static final String URL_CREATE_ACCOUNT = "https://tms9.lightning.force.com/lightning/o/Account/new";
 
 
+    @FindBy(xpath = "//button[@title='Save']")
+    private WebElement saveButton;
 
+    @FindBy(xpath = "//span[contains(@class, 'toastMessage')]")
+    private WebElement alert;
 
-
-    public NewAccountPage(WebDriver driver) {
-        super(driver);
+    public String getAlertText() {
+        return alert.getText();
     }
 
+    public void clickSave() {
+        saveButton.click();
+        waitVisibilityOf(alert);
+    }
 
-    public NewAccountPage openPage(){
-        driver.get("https://tms9.lightning.force.com/lightning/o/Account/new");
+    public NewAccountPage openPage() {
+        driver.get(URL_CREATE_ACCOUNT);
         return this;
     }
 
-    public void createNewAccount(Account account){
-    new InputField(driver, "Account Name").writeText(account.getAccountName());
-    new InputField(driver, "Website").writeText(account.getWebSite());
-    new DropDown(driver, "Industry").selectOption(account.getIndustry());
+    public NewAccountPage createNewAccount(Account account) {
+        new InputField("Account Name").writeText(account.getAccountName());
+        new InputField("Website").writeText(account.getWebSite());
+        new DropDown("Industry").selectOption(account.getIndustry());
+        return this;
     }
 
-    public void clickSave(){
-        driver.findElement(By.xpath(SAVE_BUTTON_XPATH)).click();
-    }
+
 }

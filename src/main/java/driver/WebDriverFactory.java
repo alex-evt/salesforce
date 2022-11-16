@@ -11,6 +11,9 @@ import java.time.Duration;
 
 public class WebDriverFactory {
 
+    private WebDriverFactory() {
+    }
+
     public static WebDriver getWebDriver() {
         WebDriver driver = null;
         switch (System.getProperty("browser")) {

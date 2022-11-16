@@ -1,22 +1,18 @@
 package pages;
 
-import elements.DropDown;
-import elements.InputField;
+import elements.*;
 import model.Contact;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class NewContactPage extends BasePage{
+public class NewContactPage extends BasePage {
 
     private static final String URL_CREATE_CONTACT = "https://tms9.lightning.force.com/lightning/o/Contact/new";
-
 
 
     @FindBy(xpath = "//button[@name='SaveEdit']")
     private WebElement saveButton;
 
-    @FindBy(xpath = "//button[@name='SaveAndNew']")
-    private WebElement saveAndNewButton;
 
     @FindBy(xpath = "//span[contains(@class, 'toastMessage')]")
     private WebElement alert;
@@ -26,26 +22,35 @@ public class NewContactPage extends BasePage{
         return alert.getText();
     }
 
-    public void clickSave(){
+    public void clickSave() {
         saveButton.click();
         waitVisibilityOf(alert);
     }
 
-    public void clickSaveAndNew(){
-        saveAndNewButton.click();
-    }
 
-
-    public NewContactPage openPage(){
+    public NewContactPage openPage() {
         driver.get(URL_CREATE_CONTACT);
         return this;
     }
 
-    public NewContactPage createNewContact(Contact contact){
-        new InputField("First Name").writeTextContact(contact.getFirstName());
-        new InputField("Last Name").writeTextContact(contact.getLastName());
-        new DropDown("Salutation").selectOptionForContact(contact.getSalutation());
-        new DropDown("Account Name").selectOptionForContactAccountName(contact.getAccountName());
+    public NewContactPage fillInFirstName(Contact contact) {
+        new InputFieldContact("First Name").writeTextContact(contact.getFirstName());
         return this;
     }
+
+    public NewContactPage fillInLastName(Contact contact) {
+        new InputFieldContact("Last Name").writeTextContact(contact.getLastName());
+        return this;
+    }
+
+    public NewContactPage selectSalutationOption(Contact contact) {
+        new DropDownForContact("Salutation").selectOption(contact.getSalutation());
+        return this;
+    }
+
+    public NewContactPage selectOptionForAccountName(Contact contact) {
+        new DropDownForContactAccountName("Account Name").selectOption(contact.getAccountName());
+        return this;
+    }
+
 }

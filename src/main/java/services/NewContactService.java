@@ -7,13 +7,16 @@ public class NewContactService {
 
     NewContactPage newContactPage = new NewContactPage();
 
-    public void createContact(Contact contact){
+    public void createContact(Contact contact) {
         newContactPage.openPage()
-                .createNewContact(contact)
+                .fillInFirstName(contact)
+                .fillInLastName(contact)
+                .selectSalutationOption(contact)
+                .selectOptionForAccountName(contact)
                 .clickSave();
     }
 
-    public String getAlertText(){
+    public String getAlertText() {
         return newContactPage.getAlertText();
     }
 }

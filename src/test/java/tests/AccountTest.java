@@ -12,8 +12,10 @@ import services.NewAccountService;
 
 public class AccountTest extends BaseTest {
 
+    private static final String expectedAlert = "Account \"Account1\" was created.";
+
     @BeforeClass
-    public void openMainPage(){
+    public void openMainPage() {
         User user = new User();
         LoginService loginService = new LoginService();
         loginService.login(user);
@@ -27,7 +29,7 @@ public class AccountTest extends BaseTest {
         accountService
                 .createNewAccount(account);
         String actualAlert = accountService.getAlertText();
-        Assert.assertEquals(actualAlert, "Account \"Account1\" was created.");
+        Assert.assertEquals(actualAlert, expectedAlert);
     }
 
 

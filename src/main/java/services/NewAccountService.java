@@ -10,13 +10,15 @@ public class NewAccountService {
 
 
     public void createNewAccount(Account account) {
-       newAccountPage
+        newAccountPage
                 .openPage()
-                .createNewAccount(account)
+                .fillInAccountName(account)
+                .fillInWebsite(account)
+                .selectOptionForIndustry(account)
                 .clickSave();
     }
 
-    public String getAlertText(){
-      return newAccountPage.getAlertText();
+    public String getAlertText() {
+        return newAccountPage.getAlertText();
     }
 }

@@ -28,7 +28,7 @@ public class Contact {
         return lastName;
     }
 
-    public String getAccountName(){
+    public String getAccountName() {
         return accountName;
     }
 }

@@ -6,18 +6,18 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-public class BaseTest {
+public abstract class BaseTest {
 
     protected WebDriver driver;
 
     @BeforeClass
-    public void startBrowser(){
+    public void startBrowser() {
         driver = DriverSingleton.getInstance().getDriver();
         PageFactory.initElements(driver, this);
     }
 
     @AfterClass(alwaysRun = true)
-    public void stopBrowser(){
+    public void stopBrowser() {
         DriverSingleton.getInstance().closeDriver();
     }
 

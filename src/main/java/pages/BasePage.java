@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BasePage {
+public abstract class BasePage {
     private static final int TIMEOUT = 8;
 
     protected WebDriver driver = DriverSingleton.getInstance().getDriver();
@@ -18,7 +18,7 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement waitVisibilityOf(WebElement element){
-       return new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT)).until(ExpectedConditions.visibilityOf(element));
+    public WebElement waitVisibilityOf(WebElement element) {
+        return new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT)).until(ExpectedConditions.visibilityOf(element));
     }
 }

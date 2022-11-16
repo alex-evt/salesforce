@@ -5,10 +5,6 @@ import elements.InputField;
 import model.Account;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class NewAccountPage extends BasePage {
 
@@ -35,12 +31,18 @@ public class NewAccountPage extends BasePage {
         return this;
     }
 
-    public NewAccountPage createNewAccount(Account account) {
+    public NewAccountPage fillInAccountName(Account account) {
         new InputField("Account Name").writeText(account.getAccountName());
-        new InputField("Website").writeText(account.getWebSite());
-        new DropDown("Industry").selectOption(account.getIndustry());
         return this;
     }
 
+    public NewAccountPage fillInWebsite(Account account) {
+        new InputField("Website").writeText(account.getWebSite());
+        return this;
+    }
 
+    public NewAccountPage selectOptionForIndustry(Account account) {
+        new DropDown("Industry").selectOption(account.getIndustry());
+        return this;
+    }
 }

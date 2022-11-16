@@ -7,7 +7,7 @@ public class LoginService {
 
     LoginPage loginPage = new LoginPage();
 
-    public LoginPage login(User user){
+    public LoginPage login(User user) {
         loginPage.openPage(user.getUrl())
                 .fillInUsername(user.getUsername())
                 .fillInPassword(user.getPassword())

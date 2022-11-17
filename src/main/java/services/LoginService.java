@@ -9,8 +9,8 @@ public class LoginService {
 
     public LoginPage login(User user) {
         loginPage.openPage(user.getUrl())
-                .fillInUsername(user.getUsername())
-                .fillInPassword(user.getPassword())
+                .fillInUsername(user)
+                .fillInPassword(user)
                 .clickLogin();
         return new LoginPage();
     }

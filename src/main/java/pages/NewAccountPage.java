@@ -1,7 +1,7 @@
 package pages;
 
-import elements.DropDown;
-import elements.InputField;
+import elements.DropDownAccount;
+import elements.InputFieldAccount;
 import model.Account;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 public class NewAccountPage extends BasePage {
 
     private static final String URL_CREATE_ACCOUNT = "https://tms9.lightning.force.com/lightning/o/Account/new";
+    private static final String ACCOUNT_NAME_LABEL = "Account Name";
+    private static final String WEBSITE_LABEL = "Website";
+    private static final String INDUSTRY_LABEL = "Industry";
 
 
     @FindBy(xpath = "//button[@title='Save']")
@@ -32,17 +35,17 @@ public class NewAccountPage extends BasePage {
     }
 
     public NewAccountPage fillInAccountName(Account account) {
-        new InputField("Account Name").writeText(account.getAccountName());
+        new InputFieldAccount(ACCOUNT_NAME_LABEL).writeText(account.getAccountName());
         return this;
     }
 
     public NewAccountPage fillInWebsite(Account account) {
-        new InputField("Website").writeText(account.getWebSite());
+        new InputFieldAccount(WEBSITE_LABEL).writeText(account.getWebSite());
         return this;
     }
 
     public NewAccountPage selectOptionForIndustry(Account account) {
-        new DropDown("Industry").selectOption(account.getIndustry());
+        new DropDownAccount(INDUSTRY_LABEL).selectOption(account.getIndustry());
         return this;
     }
 }

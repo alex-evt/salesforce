@@ -8,6 +8,10 @@ import org.openqa.selenium.support.FindBy;
 public class NewContactPage extends BasePage {
 
     private static final String URL_CREATE_CONTACT = "https://tms9.lightning.force.com/lightning/o/Contact/new";
+    private static final String FIRST_NAME_LABEL = "First Name";
+    private static final String LAST_NAME_LABEL = "Last Name";
+    private static final String SALUTATION_LABEL = "Salutation";
+    private static final String ACCOUNT_NAME_LABEL = "Account Name";
 
 
     @FindBy(xpath = "//button[@name='SaveEdit']")
@@ -34,22 +38,22 @@ public class NewContactPage extends BasePage {
     }
 
     public NewContactPage fillInFirstName(Contact contact) {
-        new InputFieldContact("First Name").writeTextContact(contact.getFirstName());
+        new InputFieldContact(FIRST_NAME_LABEL).writeText(contact.getFirstName());
         return this;
     }
 
     public NewContactPage fillInLastName(Contact contact) {
-        new InputFieldContact("Last Name").writeTextContact(contact.getLastName());
+        new InputFieldContact(LAST_NAME_LABEL).writeText(contact.getLastName());
         return this;
     }
 
     public NewContactPage selectSalutationOption(Contact contact) {
-        new DropDownForContact("Salutation").selectOption(contact.getSalutation());
+        new DropDownContact(SALUTATION_LABEL).selectOption(contact.getSalutation());
         return this;
     }
 
     public NewContactPage selectOptionForAccountName(Contact contact) {
-        new DropDownForContactAccountName("Account Name").selectOption(contact.getAccountName());
+        new DropDownContactAccountName(ACCOUNT_NAME_LABEL).selectOption(contact.getAccountName());
         return this;
     }
 

@@ -2,9 +2,9 @@ package model;
 
 public class Account {
 
-    private String accountName;
-    private String webSite;
-    private String industry;
+    private final String accountName;
+    private final String webSite;
+    private final String industry;
 
     public Account(String accountName, String webSite, String industry) {
         this.accountName = accountName;

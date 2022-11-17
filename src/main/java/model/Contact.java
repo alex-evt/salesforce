@@ -2,11 +2,11 @@ package model;
 
 public class Contact {
 
-    private String salutation;
-    private String firstName;
-    private String lastName;
+    private final String salutation;
+    private final String firstName;
+    private final String lastName;
 
-    private String accountName;
+    private final String accountName;
 
 
     public Contact(String salutation, String firstName, String lastName, String accountName) {
